@@ -1,0 +1,23 @@
+name: Automated Tests
+
+# Essa action rodará quando a PR for criada
+on: pull_request
+
+jobs:
+  jest:
+    name: Jest Ubuntu
+    # Rodando na versão mais atual do ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      # Downloading do Código
+      - uses: actions/checkout@v4
+      # Configurando a versão do node
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "lts/hydrogen"
+      # Instalando as dependências
+      # npm ci -> utilizará extritamente as versão das dependências já declaradas(sem atualizações) no package-lock.json
+      # npm install -> recalcularia novamente as dependências e sub-dependências com novos pacotes ou versões
+      - run: npm ci
+      # rodando o comando "npm run test"
+      - run: npm test
