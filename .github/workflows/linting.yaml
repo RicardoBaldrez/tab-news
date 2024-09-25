@@ -6,6 +6,7 @@ on:
 
 jobs:
   prettier:
+    if: github.event_name == 'pull_request'
     name: Prettier
     runs-on: ubuntu-latest
     steps:
@@ -20,6 +21,7 @@ jobs:
       - run: npm run lint:prettier:check
 
   eslint:
+    if: github.event_name == 'pull_request'
     name: Eslint
     runs-on: ubuntu-latest
     steps:
@@ -34,6 +36,7 @@ jobs:
       - run: npm run lint:eslint:check
 
   commitlint:
+    if: github.event_name == 'pull_request'
     name: commitlint
     runs-on: ubuntu-latest
     steps:
