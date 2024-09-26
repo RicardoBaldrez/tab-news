@@ -34,6 +34,7 @@ jobs:
       - run: npm run lint:eslint:check
 
   commitlint:
+    if: github.event_name == 'pull_request'
     name: commitlint
     runs-on: ubuntu-latest
     steps:
